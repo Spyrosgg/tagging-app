@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tagging-app/static/css/main.5da7b59a.css",
-    "main.js": "/tagging-app/static/js/main.cbd809ea.js",
+    "main.js": "/tagging-app/static/js/main.ccdfe76f.js",
     "static/js/787.99434fa2.chunk.js": "/tagging-app/static/js/787.99434fa2.chunk.js",
     "static/media/wheres-waldo-winter.jpg": "/tagging-app/static/media/wheres-waldo-winter.9736162ac89c68ce67a0.jpg",
     "static/media/wheres-waldo-summer.jpg": "/tagging-app/static/media/wheres-waldo-summer.a0e0289ef358bd1a3745.jpg",
@@ -11,11 +11,11 @@
     "static/media/waldo.png": "/tagging-app/static/media/waldo.4efa23d4fc2e794c68c6.png",
     "index.html": "/tagging-app/index.html",
     "main.5da7b59a.css.map": "/tagging-app/static/css/main.5da7b59a.css.map",
-    "main.cbd809ea.js.map": "/tagging-app/static/js/main.cbd809ea.js.map",
+    "main.ccdfe76f.js.map": "/tagging-app/static/js/main.ccdfe76f.js.map",
     "787.99434fa2.chunk.js.map": "/tagging-app/static/js/787.99434fa2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5da7b59a.css",
-    "static/js/main.cbd809ea.js"
+    "static/js/main.ccdfe76f.js"
   ]
 }
