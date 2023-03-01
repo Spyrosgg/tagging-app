@@ -19,7 +19,7 @@ function Layout({ inGame }) {
     <>
       <header className="App-header">
         <div className="title">
-          <Link to="/">{!inGame ? "Where's Waldo" : "Home"}</Link>
+          <Link to="/tagging-app/">{!inGame ? "Where's Waldo" : "Home"}</Link>
         </div>
         <div className="Choose-chrs">
           {/* <div className="chrs-names">
@@ -33,10 +33,10 @@ function Layout({ inGame }) {
         </div>
         <div className="score-board">
           <StyledButton>
-            <Link to="/score"> Score</Link>
+            <Link to="/tagging-app/score"> Score</Link>
           </StyledButton>
           <StyledButtonV1>
-            <Link to="/rules"> How to play</Link>
+            <Link to="/tagging-app/rules"> How to play</Link>
           </StyledButtonV1>
         </div>
       </header>

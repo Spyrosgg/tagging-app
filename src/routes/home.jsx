@@ -1,5 +1,4 @@
 import "../App.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import winter from "../lib/wheres-waldo-winter.jpg";
 import summer from "../lib/wheres-waldo-summer.jpg";
@@ -9,7 +8,7 @@ function Home({setInGame}) {
   return (
     <>
       <div className="body">
-        <Link to="/game/winter" className="body-item" >
+        <Link to="/tagging-app/game/winter" className="body-item" >
           WINTER
           <img src={winter} alt="winter" />
         </Link>

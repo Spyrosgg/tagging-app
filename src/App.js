@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Layout inGame={inGame} />}>
+        <Route path="/tagging-app/" element={<Layout inGame={inGame} />}>
           <Route index element={<Home setInGame={setInGame} />} />
           <Route path="game/:id" element={<GameCard setInGame={setInGame} />} />
           <Route path="score" element={<Score />} />
