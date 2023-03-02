@@ -3,7 +3,8 @@ import { useParams, useOutletContext } from "react-router-dom";
 import winter from "../lib/wheres-waldo-winter.jpg";
 import summer from "../lib/wheres-waldo-summer.jpg";
 import { winterData } from "../lib/chrs.coordinates";
-import { YouFound, TryAgain } from "../util/Notification";
+import { YouFound, TryAgain, YouWon } from "../util/Notification";
+import FireworksComp from "../util/fireworks";
 
 function GameCard({ img, title, setInGame }) {
   const { id } = useParams();
@@ -11,6 +12,7 @@ function GameCard({ img, title, setInGame }) {
   const [x, setX] = useState();
   const [y, setY] = useState();
   const [onOff, setOnoff] = useState({ ta: false, yf: false });
+  const [won, setWon] = useState(false);
   const [selectedChr, winDb, setWinDb] = useOutletContext();
 
   useEffect(() => {
@@ -31,10 +33,12 @@ function GameCard({ img, title, setInGame }) {
   function handleCheck(chr) {
     winterData.map((who) => {
       let { id, x1, y1, x2, y2 } = who;
-      return who.id === chr &&
+      return (
+        who.id === chr &&
         (x > x1 && y > y1 && x < x2 && y < y2
           ? checkIfWon(id)
-          : handleTryAgain({ chr }));
+          : handleTryAgain({ chr }))
+      );
     });
   }
 
@@ -46,12 +50,18 @@ function GameCard({ img, title, setInGame }) {
   function checkIfWon(id) {
     console.log("id", winDb[id]);
     const newWinDb = { ...winDb, [id]: true };
-    newWinDb.waldo &&
+    if (
+      newWinDb.waldo &&
       newWinDb.woof &&
       newWinDb.wenda &&
       newWinDb.wizard &&
-      newWinDb.odlaw &&
-      alert("YOU WON");
+      newWinDb.odlaw
+    ) {
+      setWon(true);
+      console.log("youWonnn");
+    }
+
+    console.log("onoff?", onOff);
     console.log("win?", newWinDb);
     setWinDb(newWinDb);
     //fire you found norification
@@ -64,6 +74,7 @@ function GameCard({ img, title, setInGame }) {
       <div>
         {onOff.ta && <TryAgain info={selectedChr} />}
         {onOff.yf && <YouFound info={selectedChr} />}
+        {won && <FireworksComp />}        
         <img
           src={id === "winter" ? winter : summer}
           alt="game card"
