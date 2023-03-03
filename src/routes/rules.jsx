@@ -1,5 +1,5 @@
-import StyledCenterDiv from "../styles/styled_Center";
-import styled from "styled-components";
+import { StyledCenterDiv} from "../styles/styled_Center";
+import { StyledCenterDivCol } from "../styles/styled_Center";
 import waldo from "../lib/waldo.png";
 import wenda from "../lib/wenda.png";
 import woof from "../lib/woof.png";
@@ -45,8 +45,4 @@ function Rules() {
   );
 }
 
-const StyledCenterDivCol = styled(StyledCenterDiv)`
-   flex-direction: column;
- align-items: center;
-`
 export default Rules;

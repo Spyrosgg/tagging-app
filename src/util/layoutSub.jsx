@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { StyledButton } from "../styles/styled_Button";
+import StopWatch from "../util/Stopwatch";
 
-function LayoutSub({ selectedChr, setSelectedChr, winDb,  setWinDb }) {
+function LayoutSub({ selectedChr, setSelectedChr, winDb,  setWinDb, isPaused }) {
  
   const CurrentStyledButton = styled(StyledButton)`
   border-radius: 0;
@@ -55,6 +56,7 @@ function LayoutSub({ selectedChr, setSelectedChr, winDb,  setWinDb }) {
               Odlaw
             </CurrentStyledButton>
           </div>
+            <StopWatch isPaused={isPaused}/>
         </div>
       </div>
     </>

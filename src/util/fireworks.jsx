@@ -1,7 +1,7 @@
 import { Fireworks } from '@fireworks-js/react'
 import { YouWon } from './Notification'
 
-export default function FireworksComp() {
+export default function FireworksComp({time}) {
   return (
     <div>
         <Fireworks
@@ -21,7 +21,7 @@ export default function FireworksComp() {
             opacity: 0.8
           }}
         />
-        <YouWon/>
+        <YouWon time={time}/>
     </div>
   )
 }

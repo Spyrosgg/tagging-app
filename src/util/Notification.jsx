@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import StyledPopupDiv from "../styles/styled_DivPopup";
+import { StyledButton } from "../styles/styled_Button";
+import { Link } from "react-router-dom";
 
 function TryAgain({ info }) {
   const name = info[0].toUpperCase() + info.substr(1);
@@ -27,10 +29,14 @@ function YouFound({ info }) {
   );
 }
 
-function YouWon() {
+function YouWon({time}) {
   return (
     <StyledDiv3>
       <p>You Won!</p>
+      <p>your time is:{time}</p>
+      <StyledButton>
+        <Link to="/tagging-app/score"> Score</Link>
+      </StyledButton>
     </StyledDiv3>
   );
 }
@@ -46,8 +52,8 @@ const StyledDiv2 = styled(StyledPopupDiv)`
   background-color: green;
 `;
 const StyledDiv3 = styled(StyledPopupDiv)`
-  width: 220px;
-  height: 100px;
+  width: 250px;
+  height: 200px;
   background-color: #3b4252;
 `;
 

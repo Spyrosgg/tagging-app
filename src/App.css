@@ -4,10 +4,13 @@
   font-family: Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji,
     Android Emoji, EmojiSymbols, EmojiOne Mozilla, Twemoji Mozilla,
     Segoe UI Symbol, Noto Color Emoji Compat, emoji, noto-emojipedia-fallback;
-}
+  }
+  html{
 
-.App {
-  background-color: #2e3440;
+    background-color: #2e3440;
+    z-index: 0;
+  }
+  .App {
   height: 100vh;
 }
 
@@ -21,17 +24,25 @@ img {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
 }
 
+.title{
+  width: 33vw;
+  margin-left: 100px;
+}
+
 .Choose-chrs {
-  max-width: 25vw;
+  /* max-width: 25vw; */
+  width: 33vw;
+  height: 100px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-basis:50%;
 }
 .chrs-names {
   width: 100%;
@@ -40,12 +51,19 @@ img {
   flex-direction: row;
   justify-content: space-around;
 }
+.score-board {
+  width: 33vw;
+  margin-right: 100px;
+}
+.score-board > * {
+  float: right;
+}
 
 .sticky {
+  background-color: #2e3440;
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: #3b4252;
 }
 .selection-bar {
   display: flex;
@@ -60,12 +78,6 @@ img {
   height: 20px;
 }
 
-.score-board {
-  max-width: 170px;
-}
-.score-board > * {
-  float: right;
-}
 
 .App-link {
   color: #61dafb;

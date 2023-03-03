@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { StyledButton } from "../styles/styled_Button";
 import LayoutSub from "../util/layoutSub";
 
-function Layout({ inGame }) {
+function Layout({ inGame, isPaused }) {
   const [selectedChr, setSelectedChr] = useState("");
   const [winDb, setWinDb] = useState({
     waldo: false,
@@ -45,6 +45,7 @@ function Layout({ inGame }) {
         setSelectedChr={setSelectedChr}
         winDb={winDb}
         setWinDb={setWinDb}
+        isPaused={isPaused}
       /> }
       <Outlet context={[selectedChr, winDb, setWinDb]} />
     </>

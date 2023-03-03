@@ -13,7 +13,7 @@ const StyledPopupDiv = styled.div`
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  opacity: 0.7;
+  opacity: 1;
 `;
 
 export default StyledPopupDiv;
