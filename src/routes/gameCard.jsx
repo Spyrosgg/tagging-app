@@ -3,24 +3,19 @@ import { useParams, useOutletContext } from "react-router-dom";
 import winter from "../lib/wheres-waldo-winter.jpg";
 import summer from "../lib/wheres-waldo-summer.jpg";
 import { winterData } from "../lib/chrs.coordinates";
-import { YouFound, TryAgain, YouWon } from "../util/Notification";
+import { YouFound, TryAgain } from "../util/Notification";
 import FireworksComp from "../util/fireworks";
 import {
-  collection,
   doc,
-  addDoc,
   updateDoc,
   Timestamp,
-  serverTimestamp,
+  getDoc,
 } from "firebase/firestore";
-import { StyledCenterDiv } from "../styles/styled_Center";
-import StopWatch from "../util/Stopwatch";
 import { db } from "../App";
-import { addTempDoc } from "../util/addDoc";
 import { setTempDoc } from "../util/setDoc";
 import shortid from "shortid";
 
-function GameCard({ users, setInGame, setIsPaused }) {
+function GameCard({ inGame, setInGame}) {
   console.log("GameCard > runs");
   const { id } = useParams();
   // const [x, setX] = useState();
@@ -28,13 +23,13 @@ function GameCard({ users, setInGame, setIsPaused }) {
   const [onOff, setOnoff] = useState({ ta: false, yf: false });
   const [won, setWon] = useState(false);
   const [selectedChr, winDb, setWinDb] = useOutletContext();
- const currentID = useRef('');
+  const currentID = useRef("");
 
   const x = useRef(0);
   const y = useRef(0);
 
   useEffect(() => {
-    setInGame(true);
+    setInGame("inGame");
     const update = (e) => {
       let rect = e.target.getBoundingClientRect();
       //   console.log("rect", rect.height, rect.width);
@@ -51,16 +46,19 @@ function GameCard({ users, setInGame, setIsPaused }) {
 
   //Start Timer
   // setRefID(shortid.generate())
-  
+
   useEffect(() => {
-    currentID.current = (shortid.generate());
+    currentID.current = shortid.generate();
     console.log("GeneratedID", currentID.current);
-    setTempDoc({
-      name: 'Tempo',
-      timeStart: Timestamp.fromDate(new Date()),
-      timeEnd: null,
-      timestamp: serverTimestamp(),
-    }, currentID.current);
+    setTempDoc(
+      {
+        name: "Tempo",
+        timeStart: Timestamp.fromDate(new Date()),
+        timeEnd: null,
+        score: 10000,
+      },
+      currentID.current
+    );
 
     // addTempDoc(
     //   {
@@ -73,8 +71,17 @@ function GameCard({ users, setInGame, setIsPaused }) {
   async function setEnd() {
     const docRef = doc(db, "users", currentID.current);
 
-    await updateDoc(docRef, { timeEnd: Timestamp.fromDate(new Date()) });
-    console.log("end ID: ", docRef.id);
+    await updateDoc(docRef, {
+      timeEnd: Timestamp.fromDate(new Date()),
+    });
+
+    const docSnap = await getDoc(docRef);
+    let scoreTemp =
+      docSnap.data().timeEnd.seconds - docSnap.data().timeStart.seconds;
+    await updateDoc(docRef, { score: scoreTemp });
+
+    // const docSnap2 = await getDoc(docRef);
+    // console.log("data", docSnap2.data());
   }
 
   function handleCheck(chr) {
@@ -95,7 +102,7 @@ function GameCard({ users, setInGame, setIsPaused }) {
   }
 
   function checkIfWon(id) {
-    console.log("id", winDb[id]);
+    // console.log("id", winDb[id]);
     const newWinDb = { ...winDb, [id]: true };
     if (
       newWinDb.waldo &&
@@ -109,13 +116,14 @@ function GameCard({ users, setInGame, setIsPaused }) {
       setEnd();
     }
 
-    console.log("onoff?", onOff);
-    console.log("win?", newWinDb);
+    // console.log("onoff?", onOff);
+    // console.log("win?", newWinDb);
     setWinDb(newWinDb);
     //fire you found norification
     !winDb[id] && setOnoff({ ...onOff, yf: true });
     setTimeout(() => setOnoff({ ...onOff, yf: false }), 1200);
   }
+
 
   return (
     <>

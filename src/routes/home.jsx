@@ -1,11 +1,12 @@
 import "../App.css";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import winter from "../lib/wheres-waldo-winter.jpg";
 import summer from "../lib/wheres-waldo-summer.jpg";
 
 function Home({setInGame}) {
   console.log('Home > runs');
-  setInGame(false);
+  useEffect(()=> {setInGame(false)},[]);
   return (
     <>
       <div className="body">

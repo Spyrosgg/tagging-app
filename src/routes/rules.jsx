@@ -5,9 +5,14 @@ import wenda from "../lib/wenda.png";
 import woof from "../lib/woof.png";
 import wizard from "../lib/wizard.png";
 import odlaw from "../lib/odlaw.png";
+import { useEffect } from "react";
 
-function Rules() {
+function Rules({setInGame}) {
   console.log('Rules > runs');
+
+  useEffect(()=>{
+    setInGame("inRules");
+  });
   return (
     <StyledCenterDivCol>
       <h3>Find one of these characters through the seasons:</h3>

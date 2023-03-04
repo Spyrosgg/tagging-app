@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { StyledButton } from "../styles/styled_Button";
 import LayoutSub from "../util/layoutSub";
 
-function Layout({ inGame, isPaused }) {
-  console.log('Layout > runs');
+function Layout({ inGame }) {
+  console.log("Layout > runs");
   const [selectedChr, setSelectedChr] = useState("");
   const [winDb, setWinDb] = useState({
     waldo: false,
@@ -16,20 +16,55 @@ function Layout({ inGame, isPaused }) {
     odlaw: false,
   });
 
+  function handleReset() {
+    console.log("laytot lincked");
+    setWinDb({
+      waldo: false,
+      woof: false,
+      wenda: false,
+      wizard: false,
+      odlaw: false,
+    });
+    setSelectedChr("")
+  }
+
+  function renderComponent() {
+    console.log('renderCom > runs');
+    switch (inGame) {
+      case "inGame":
+        return <Link to="/tagging-app/" onClick={handleReset}>
+          {"Reset Game"}
+        </Link>;
+      case "inRules":
+        return <Link to="/tagging-app/" onClick={handleReset}>
+          {"I'm ready to Play"}
+        </Link>;
+      case "inScore":
+        return <Link to="/tagging-app/" onClick={handleReset}>
+          {"Reset Game"}
+        </Link>;
+      case false:
+        return <Link to="/tagging-app/">
+          {"Where's Waldo"}
+        </Link>;
+      default:
+      //   return <Link to="/tagging-app/">
+      //     {"Where's Waldo"}
+      //   </Link>;
+        break;
+    }
+  }
+
   return (
     <>
       <header className="App-header">
         <div className="title">
-          <Link to="/tagging-app/">{!inGame ? "Where's Waldo" : "Home"}</Link>
+          {renderComponent()}
+          {/* <Link to="/tagging-app/" onClick={handleReset}>
+            {!inGame ? "Where's Waldo" : "Play Again"}
+          </Link> */}
         </div>
         <div className="Choose-chrs">
-          {/* <div className="chrs-names">
-            <span>Waldo</span>
-            <span>Woof</span>
-            <span>Wenda</span>
-            <span>Wizard</span>
-            <span>Odlaw</span>
-          </div> */}
           <img src={characters} alt="characters" />
         </div>
         <div className="score-board">
@@ -41,13 +76,14 @@ function Layout({ inGame, isPaused }) {
           </StyledButtonV1>
         </div>
       </header>
-      { inGame && <LayoutSub
-        selectedChr={selectedChr}
-        setSelectedChr={setSelectedChr}
-        winDb={winDb}
-        setWinDb={setWinDb}
-        isPaused={isPaused}
-      /> }
+      {inGame==="inGame" && (
+        <LayoutSub
+          selectedChr={selectedChr}
+          setSelectedChr={setSelectedChr}
+          winDb={winDb}
+          setWinDb={setWinDb}
+        />
+      )}
       <Outlet context={[selectedChr, winDb, setWinDb]} />
     </>
   );

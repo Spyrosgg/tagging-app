@@ -26,11 +26,7 @@ function App() {
           <Route
             path="game/:id"
             element={
-              <GameCard
-                setInGame={setInGame}
-                users={users}
-                // setUsers={setUsers}
-              />
+              <GameCard inGame={inGame} setInGame={setInGame} users={users} />
             }
           />
           <Route
@@ -44,7 +40,7 @@ function App() {
               />
             }
           />
-          <Route path="rules" element={<Rules />} />
+          <Route path="rules" element={<Rules setInGame={setInGame} />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>

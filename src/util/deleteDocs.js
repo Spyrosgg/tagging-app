@@ -1,6 +1,4 @@
 import {
-  doc,
-  deleteDoc,
   collection,
   where,
   query,
@@ -14,7 +12,7 @@ export const deleteTempo = async () => {
   const qDel = query(usersCol, where("name", "==", "Tempo"));
   const querySnapshot = await getDocs(qDel);
 
-  console.log("getDel", querySnapshot);
+  // console.log("getDel", querySnapshot);
   
   const batch = writeBatch(db);
   querySnapshot.forEach((doc) => {
@@ -23,7 +21,3 @@ export const deleteTempo = async () => {
   });
   await batch.commit();
 };
-
-// Delete the city 'LA'
-// const laRef = doc(db, "cities", "LA");
-// batch.delete(laRef);

@@ -56,7 +56,7 @@ function LayoutSub({ selectedChr, setSelectedChr, winDb,  setWinDb, isPaused }) 
               Odlaw
             </CurrentStyledButton>
           </div>
-            <StopWatch isPaused={isPaused}/>
+            <StopWatch/>
         </div>
       </div>
     </>
