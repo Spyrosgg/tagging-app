@@ -7,6 +7,7 @@ import wizard from "../lib/wizard.png";
 import odlaw from "../lib/odlaw.png";
 
 function Rules() {
+  console.log('Rules > runs');
   return (
     <StyledCenterDivCol>
       <h3>Find one of these characters through the seasons:</h3>

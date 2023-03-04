@@ -1,26 +1,16 @@
 import { useState, useEffect } from "react";
-import {
-  collection,
-  query,
-  getDocs,
-  orderBy,
-  doc,
-  addDoc,
-  updateDoc,
-  Timestamp,
-  serverTimestamp,
-} from "firebase/firestore";
+import { collection, query, getDocs, orderBy, where } from "firebase/firestore";
 import { StyledCenterDiv } from "../styles/styled_Center";
+import { deleteTempo } from "../util/deleteDocs";
 
-function Score({ db, users, setUsers }) {
+function Score({ db, users, setUsers, setInGame }) {
+  console.log("Score > runs");
   const usersCol = collection(db, "users");
-  const q = query(usersCol, orderBy("timeStart"));
-  // console.log("usersCol", usersCol);
-  // console.log("q", q);
+  const q = query(usersCol, where("name", "!=", "Tempo"));
 
   useEffect(() => {
+    setInGame(false);
     const getUsers = async () => {
-      console.log("async");
       const querySnapshot = await getDocs(q);
       const usersDb = querySnapshot.docs.map((usr) => {
         return {
@@ -35,6 +25,7 @@ function Score({ db, users, setUsers }) {
     };
     getUsers();
   }, []);
+  deleteTempo();
 
   return (
     <StyledCenterDiv>
@@ -43,8 +34,8 @@ function Score({ db, users, setUsers }) {
         <ol>
           {users &&
             users.map((usr) => {
-              console.log("timesrat", usr.timeStart.seconds);
-              console.log("timeEnd", usr.timeEnd);
+              // console.log("timesrat", usr.timeStart.seconds);
+              // console.log("timeEnd", usr.timeEnd);
               let scoreMin = 0;
               let scoreSec = 0;
               if (usr.timeEnd) {
@@ -54,9 +45,11 @@ function Score({ db, users, setUsers }) {
               }
 
               return (
-                <li key={usr.id}>
-                  {usr.name} {">"} {scoreMin}':{scoreSec}''
-                </li>
+                <>
+                  <li key={usr.id}>
+                    {usr.name} {">"} {scoreMin}':{scoreSec}''
+                  </li>
+                </>
               );
             })}
         </ol>

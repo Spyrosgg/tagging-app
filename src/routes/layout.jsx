@@ -6,6 +6,7 @@ import { StyledButton } from "../styles/styled_Button";
 import LayoutSub from "../util/layoutSub";
 
 function Layout({ inGame, isPaused }) {
+  console.log('Layout > runs');
   const [selectedChr, setSelectedChr] = useState("");
   const [winDb, setWinDb] = useState({
     waldo: false,

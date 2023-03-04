@@ -132,4 +132,7 @@ function GameCard({ users, setUsers, setInGame, setIsPaused }) {
   );
 }
 
+function XY ({setX, setY}){
+
+}
 export default GameCard;

@@ -4,6 +4,7 @@ import winter from "../lib/wheres-waldo-winter.jpg";
 import summer from "../lib/wheres-waldo-summer.jpg";
 
 function Home({setInGame}) {
+  console.log('Home > runs');
   setInGame(false);
   return (
     <>

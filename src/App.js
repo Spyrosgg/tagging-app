@@ -17,29 +17,32 @@ export const db = getFirestore(app);
 function App() {
   const [inGame, setInGame] = useState(false);
   const [users, setUsers] = useState([]);
-  const [isPaused, setIsPaused] = useState(false);
+
   return (
     <div className="App">
       <Routes>
-        <Route
-          path="/tagging-app/"
-          element={<Layout inGame={inGame} isPaused={isPaused} />}
-        >
+        <Route path="/tagging-app/" element={<Layout inGame={inGame} />}>
           <Route index element={<Home setInGame={setInGame} />} />
           <Route
             path="game/:id"
             element={
               <GameCard
                 setInGame={setInGame}
-                setIsPaused={setIsPaused}
                 users={users}
-                setUsers={setUsers}
+                // setUsers={setUsers}
               />
             }
           />
           <Route
             path="score"
-            element={<Score db={db} users={users} setUsers={setUsers} />}
+            element={
+              <Score
+                db={db}
+                users={users}
+                setUsers={setUsers}
+                setInGame={setInGame}
+              />
+            }
           />
           <Route path="rules" element={<Rules />} />
           <Route path="*" element={<NoMatch />} />

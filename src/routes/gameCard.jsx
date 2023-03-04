@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useOutletContext } from "react-router-dom";
 import winter from "../lib/wheres-waldo-winter.jpg";
 import summer from "../lib/wheres-waldo-summer.jpg";
@@ -20,22 +20,26 @@ import { addTempDoc } from "../util/addDoc";
 import { setTempDoc } from "../util/setDoc";
 import shortid from "shortid";
 
-function GameCard({ users, setUsers, setInGame, setIsPaused }) {
+function GameCard({ users, setInGame, setIsPaused }) {
+  console.log("GameCard > runs");
   const { id } = useParams();
-  setInGame(true);
-  const [x, setX] = useState();
-  const [y, setY] = useState();
+  // const [x, setX] = useState();
+  // const [y, setY] = useState();
   const [onOff, setOnoff] = useState({ ta: false, yf: false });
   const [won, setWon] = useState(false);
   const [selectedChr, winDb, setWinDb] = useOutletContext();
-  const [refID, setRefID] = useState('');
+ const currentID = useRef('');
+
+  const x = useRef(0);
+  const y = useRef(0);
 
   useEffect(() => {
+    setInGame(true);
     const update = (e) => {
       let rect = e.target.getBoundingClientRect();
       //   console.log("rect", rect.height, rect.width);
-      setX(((e.clientX - rect.left) / rect.width) * 1000); //x position within the element.
-      setY(((e.clientY - rect.top) / rect.height) * 1000); //y position within the element.
+      x.current = ((e.clientX - rect.left) / rect.width) * 1000; //x position within the element.
+      y.current = ((e.clientY - rect.top) / rect.height) * 1000; //y position within the element.
     };
     window.addEventListener("mousemove", update);
     window.addEventListener("touchmove", update);
@@ -43,31 +47,31 @@ function GameCard({ users, setUsers, setInGame, setIsPaused }) {
       window.removeEventListener("mousemove", update);
       window.removeEventListener("touchmove", update);
     };
-  }, [setX, setY]); //#todo do not re render when getting coordinates
+  }, [x, y]); //#todo do not re render when getting coordinates
 
   //Start Timer
   // setRefID(shortid.generate())
-  console.log('short',refID);
-
+  
   useEffect(() => {
+    currentID.current = (shortid.generate());
+    console.log("GeneratedID", currentID.current);
     setTempDoc({
+      name: 'Tempo',
       timeStart: Timestamp.fromDate(new Date()),
       timeEnd: null,
       timestamp: serverTimestamp(),
-    }, refID);
+    }, currentID.current);
 
-    // addTempDoc({
-    //   timeStart: Timestamp.fromDate(new Date()),
-    //   timeEnd: null,
-    //   timestamp: serverTimestamp(),
-    // }, setRefID);
-
-
+    // addTempDoc(
+    //   {
+    //     timeStart: Timestamp.fromDate(new Date()),
+    //     timeEnd: null,
+    //     timestamp: serverTimestamp(),
+    //   });
   }, []);
 
-
   async function setEnd() {
-    const docRef = doc(db, "users", refID);
+    const docRef = doc(db, "users", currentID.current);
 
     await updateDoc(docRef, { timeEnd: Timestamp.fromDate(new Date()) });
     console.log("end ID: ", docRef.id);
@@ -78,7 +82,7 @@ function GameCard({ users, setUsers, setInGame, setIsPaused }) {
       let { id, x1, y1, x2, y2 } = who;
       return (
         who.id === chr &&
-        (x > x1 && y > y1 && x < x2 && y < y2
+        (x.current > x1 && y.current > y1 && x.current < x2 && y.current < y2
           ? checkIfWon(id)
           : handleTryAgain({ chr }))
       );
@@ -101,7 +105,6 @@ function GameCard({ users, setUsers, setInGame, setIsPaused }) {
       newWinDb.odlaw
     ) {
       setWon(true);
-      setIsPaused(true);
       console.log("youWonnn");
       setEnd();
     }
@@ -119,15 +122,16 @@ function GameCard({ users, setUsers, setInGame, setIsPaused }) {
       <div>
         {onOff.ta && <TryAgain info={selectedChr} />}
         {onOff.yf && <YouFound info={selectedChr} />}
-        {won && <FireworksComp />}
+        {won && <FireworksComp currentID={currentID.current} />}
         {/* <StopWatch /> */}
+        {/* <FireworksComp currentID={currentID} /> */}
         <img
           src={id === "winter" ? winter : summer}
           alt="game card"
           onClick={() => handleCheck(selectedChr)}
         />
       </div>
-      <div>{`x: ${x}; y: ${y};`}</div>
+      <div>{`x: ${x.current}; y: ${y.current};`}</div>
     </>
   );
 }
