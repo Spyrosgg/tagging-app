@@ -16,7 +16,7 @@ export const deleteTempo = async () => {
   
   const batch = writeBatch(db);
   querySnapshot.forEach((doc) => {
-    console.log("doc", doc);
+    // console.log("doc", doc);
     batch.delete(doc.ref);
   });
   await batch.commit();

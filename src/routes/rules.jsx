@@ -8,7 +8,7 @@ import odlaw from "../lib/odlaw.png";
 import { useEffect } from "react";
 
 function Rules({setInGame}) {
-  console.log('Rules > runs');
+  // console.log('Rules > runs');
 
   useEffect(()=>{
     setInGame("inRules");

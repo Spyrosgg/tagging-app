@@ -16,7 +16,7 @@ import { setTempDoc } from "../util/setDoc";
 import shortid from "shortid";
 
 function GameCard({ inGame, setInGame}) {
-  console.log("GameCard > runs");
+  // console.log("GameCard > runs");
   const { id } = useParams();
   // const [x, setX] = useState();
   // const [y, setY] = useState();
@@ -32,7 +32,7 @@ function GameCard({ inGame, setInGame}) {
     setInGame("inGame");
     const update = (e) => {
       let rect = e.target.getBoundingClientRect();
-      //   console.log("rect", rect.height, rect.width);
+      //   // console.log("rect", rect.height, rect.width);
       x.current = ((e.clientX - rect.left) / rect.width) * 1000; //x position within the element.
       y.current = ((e.clientY - rect.top) / rect.height) * 1000; //y position within the element.
     };
@@ -49,7 +49,7 @@ function GameCard({ inGame, setInGame}) {
 
   useEffect(() => {
     currentID.current = shortid.generate();
-    console.log("GeneratedID", currentID.current);
+    // console.log("GeneratedID", currentID.current);
     setTempDoc(
       {
         name: "Tempo",
@@ -112,7 +112,7 @@ function GameCard({ inGame, setInGame}) {
       newWinDb.odlaw
     ) {
       setWon(true);
-      console.log("youWonnn");
+      // console.log("youWonnn");
       setEnd();
     }
 

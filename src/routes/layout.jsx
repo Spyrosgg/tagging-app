@@ -6,7 +6,7 @@ import { StyledButton } from "../styles/styled_Button";
 import LayoutSub from "../util/layoutSub";
 
 function Layout({ inGame }) {
-  console.log("Layout > runs");
+  // console.log("Layout > runs");
   const [selectedChr, setSelectedChr] = useState("");
   const [winDb, setWinDb] = useState({
     waldo: false,
@@ -17,7 +17,7 @@ function Layout({ inGame }) {
   });
 
   function handleReset() {
-    console.log("laytot lincked");
+    // console.log("laytot lincked");
     setWinDb({
       waldo: false,
       woof: false,
@@ -29,7 +29,7 @@ function Layout({ inGame }) {
   }
 
   function renderComponent() {
-    console.log('renderCom > runs');
+    // console.log('renderCom > runs');
     switch (inGame) {
       case "inGame":
         return <Link to="/tagging-app/" onClick={handleReset}>

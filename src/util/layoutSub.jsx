@@ -3,7 +3,7 @@ import { StyledButton } from "../styles/styled_Button";
 import StopWatch from "../util/Stopwatch";
 
 function LayoutSub({ selectedChr, setSelectedChr, winDb,  setWinDb, isPaused }) {
-  console.log('Layout > Sub > runs');
+  // console.log('Layout > Sub > runs');
   const CurrentStyledButton = styled(StyledButton)`
   border-radius: 0;
   margin-left: 10px;

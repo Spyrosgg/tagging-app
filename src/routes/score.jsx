@@ -5,7 +5,7 @@ import { deleteTempo } from "../util/deleteDocs";
 import styled from "styled-components";
 
 function Score({ db, users, setUsers, setInGame }) {
-  console.log("Score > runs");
+  // console.log("Score > runs");
   deleteTempo();
 
   const usersCol = collection(db, "users");

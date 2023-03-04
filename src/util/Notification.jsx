@@ -33,7 +33,7 @@ function YouFound({ info }) {
 
 function YouWon({ time, currentID }) {
   const [name, setName] = useState('');
-  console.log("YouWon > runs");
+  // console.log("YouWon > runs");
 
 function handleChange(e){
   setName(e.target.value);
@@ -41,8 +41,8 @@ function handleChange(e){
 
   function handleSubmit(e) {
     addName({ name, currentID });
-    console.log("name submitted", name);
-    console.log("with ID", currentID);
+    // console.log("name submitted", name);
+    // console.log("with ID", currentID);
     e.preventDefault();
   }
 

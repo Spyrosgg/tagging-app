@@ -6,9 +6,9 @@ export const addTempDoc = async (tempUser,setRefID) => {
     //Current user ID
     setRefID(userRef.id);
 
-    console.log("start ID: ", userRef.id);
-    console.log("timeStart: ", userRef.timeStart);
-    console.log("timestamp: ", userRef.timestamp);
+    // console.log("start ID: ", userRef.id);
+    // console.log("timeStart: ", userRef.timeStart);
+    // console.log("timestamp: ", userRef.timestamp);
 
   }
 
