@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import StyledPopupDiv from "../styles/styled_DivPopup";
 import { StyledButton } from "../styles/styled_Button";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { addName } from "./updateDoc";
 
 function TryAgain({ info }) {
@@ -32,38 +32,51 @@ function YouFound({ info }) {
 }
 
 function YouWon({ time, currentID }) {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
+  const [submitted, setSubmitted] = useState(true);
   // console.log("YouWon > runs");
 
-function handleChange(e){
-  setName(e.target.value);
-}
+  function handleChange(e) {
+    setName(e.target.value);
+  }
 
   function handleSubmit(e) {
+    console.log("submitted?", submitted);
     addName({ name, currentID });
     // console.log("name submitted", name);
     // console.log("with ID", currentID);
     e.preventDefault();
+    setSubmitted(false);
   }
 
   return (
     <div>
       <StyledDiv3>
         <p className="boldy">You Won!</p>
-        <p>your time is:{time}</p>
-        <form method="post" onSubmit={handleSubmit}>
-          <input
-            className="input"
-            name="currentName"
-            placeholder="Add your name"
-            value={name}
-            onChange={handleChange}
-          />
-<button className="submitB" type="submit">Submit</button>
-        </form>
-          <StyledButtonV1>
-            <Link to="/tagging-app/score">Goto Score</Link>
-          </StyledButtonV1>
+        <p>
+          <span style={{ fontSize: "1.2rem" }}>{name}</span> your time is:{" "}
+          <em>{time}</em>
+        </p>
+        {submitted && (
+          <form method="post" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              minlength="2"
+              maxlength="10"
+              className="input"
+              name="currentName"
+              placeholder="Add your name"
+              value={name}
+              onChange={handleChange}
+            />
+            <button className="submitB" type="submit">
+              Submit
+            </button>
+          </form>
+        )}
+        <StyledButtonV1>
+          <Link to="/tagging-app/score">Goto Score</Link>
+        </StyledButtonV1>
       </StyledDiv3>
     </div>
   );
@@ -93,7 +106,7 @@ const StyledDiv3 = styled(StyledPopupDiv)`
   .input {
     color: black;
   }
-  .submitB{
+  .submitB {
     color: #3b4252;
   }
 `;

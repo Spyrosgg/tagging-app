@@ -35,3 +35,41 @@ export const winterData = [
         y2: 660
     }
 ]
+
+export const summerData = [
+    {
+        id: 'waldo',
+        x1: 609,
+        y1: 359,
+        x2: 626,
+        y2: 423
+    },
+    {
+        id: 'woof',
+        x1:675,
+        y1:366,
+        x2:683,
+        y2:379
+    },
+    {
+        id: 'wenda',
+        x1:766,
+        y1:396,
+        x2:778,
+        y2:421
+    },
+    {
+        id: 'wizard',
+        x1:263 ,
+        y1:344 ,
+        x2:279 ,
+        y2:382 
+    },
+    {
+        id: 'odlaw',
+        x1: 102,
+        y1:344 ,
+        x2: 112,
+        y2:390 
+    }
+]

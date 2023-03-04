@@ -22,6 +22,7 @@ function Score({ db, users, setUsers, setInGame }) {
           timeStart: usr.data().timeStart,
           timeEnd: usr.data().timeEnd,
           score: usr.data().score,
+          season: usr.data().season,
         };
       });
       setUsers(usersDb);
@@ -35,32 +36,43 @@ function Score({ db, users, setUsers, setInGame }) {
     <StyledCenterDiv1>
       <h1>Score</h1>
       <StyledTable>
-        {users &&
-          users.map((usr) => {
-            // console.log("timesrat", usr.timeStart.seconds);
-            // console.log("timeEnd", usr.timeEnd);
-            // let scoreMin = 0;
-            // let scoreSec = 0;
-            // if (usr.timeEnd) {
-            //   scoreSec = usr.score % 60;
-            //   scoreMin = usr.score / 60;
-            // }
-            // console.log("usr", usr);
-            i++;
-            return (
-              <>
-                <tr>
-                  <td>{i}.</td>
-                  <td>{usr.name}</td>
-                  <td>{usr.score} sec</td>
-                </tr>
-                {/* <li key={usr.id}>
-                    {usr.name} {">"} {usr.score} sec
-                    [[{usr.name} {">"} {scoreMin}':{scoreSec}'' {usr.score}]]
-                  </li> */}
-              </>
-            );
-          })}
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Season</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users &&
+            users.map((usr) => {
+              // console.log("timesrat", usr.timeStart.seconds);
+              // console.log("timeEnd", usr.timeEnd);
+              // let scoreMin = 0;
+              // let scoreSec = 0;
+              // if (usr.timeEnd) {
+              //   scoreSec = usr.score % 60;
+              //   scoreMin = usr.score / 60;
+              // }
+              console.log("usr", usr);
+              i++;
+              return (
+                <>
+                  <tr>
+                    <td>{i}.</td>
+                    <td>{usr.name}</td>
+                    <td>{usr.season}</td>
+                    <td>{usr.score} sec</td>
+                  </tr>
+                  {/* <li key={usr.id}>
+                      {usr.name} {">"} {usr.score} sec
+                      [[{usr.name} {">"} {scoreMin}':{scoreSec}'' {usr.score}]]
+                    </li> */}
+                </>
+              );
+            })}
+        </tbody>
       </StyledTable>
     </StyledCenterDiv1>
   );
@@ -88,13 +100,14 @@ const StyledTable = styled.table`
   width: 50%;
   border-collapse: collapse;
 
-  tr:nth-child(odd) {
+  thead tr {
+    background-color: #3b4252;
+  }
+  tbody tr:nth-child(even) > * {
     background-color: #3b4252;
   }
 
-  /* tr:nth-child(even) {
-    background-color: #434c5e;
-  } */
+
 
   th,
   td {
