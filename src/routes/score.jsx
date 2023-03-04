@@ -38,10 +38,10 @@ function Score({ db, users, setUsers, setInGame }) {
       <StyledTable>
         <thead>
           <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Season</th>
-            <th>Time</th>
+            <th style={{width:"10%"}}>No</th>
+            <th style={{width:"60%"}}>Name</th>
+            <th style={{width:"15%"}}>Season</th>
+            <th style={{width:"15%"}}>Time</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +60,7 @@ function Score({ db, users, setUsers, setInGame }) {
               return (
                 <>
                   <tr>
-                    <td>{i}.</td>
+                    <td >{i}.</td>
                     <td>{usr.name}</td>
                     <td>{usr.season}</td>
                     <td>{usr.score} sec</td>

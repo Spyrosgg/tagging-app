@@ -60,9 +60,9 @@ function YouWon({ time, currentID }) {
         {submitted && (
           <form method="post" onSubmit={handleSubmit}>
             <input
-              type="text"
+              // type="text"
               minlength="2"
-              maxlength="10"
+              maxlength="8"
               className="input"
               name="currentName"
               placeholder="Add your name"
@@ -105,6 +105,7 @@ const StyledDiv3 = styled(StyledPopupDiv)`
   }
   .input {
     color: black;
+    width: 150px;
   }
   .submitB {
     color: #3b4252;
