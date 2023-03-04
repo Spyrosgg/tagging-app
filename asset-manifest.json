@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tagging-app/static/css/main.5da7b59a.css",
-    "main.js": "/tagging-app/static/js/main.cc68d81e.js",
+    "main.css": "/tagging-app/static/css/main.4b9467e2.css",
+    "main.js": "/tagging-app/static/js/main.417f822a.js",
     "static/js/787.99434fa2.chunk.js": "/tagging-app/static/js/787.99434fa2.chunk.js",
     "static/media/wheres-waldo-winter.jpg": "/tagging-app/static/media/wheres-waldo-winter.9736162ac89c68ce67a0.jpg",
     "static/media/wheres-waldo-summer.jpg": "/tagging-app/static/media/wheres-waldo-summer.a0e0289ef358bd1a3745.jpg",
@@ -10,12 +10,12 @@
     "static/media/wenda.png": "/tagging-app/static/media/wenda.47dcee729168d8cf7180.png",
     "static/media/waldo.png": "/tagging-app/static/media/waldo.4efa23d4fc2e794c68c6.png",
     "index.html": "/tagging-app/index.html",
-    "main.5da7b59a.css.map": "/tagging-app/static/css/main.5da7b59a.css.map",
-    "main.cc68d81e.js.map": "/tagging-app/static/js/main.cc68d81e.js.map",
+    "main.4b9467e2.css.map": "/tagging-app/static/css/main.4b9467e2.css.map",
+    "main.417f822a.js.map": "/tagging-app/static/js/main.417f822a.js.map",
     "787.99434fa2.chunk.js.map": "/tagging-app/static/js/787.99434fa2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5da7b59a.css",
-    "static/js/main.cc68d81e.js"
+    "static/css/main.4b9467e2.css",
+    "static/js/main.417f822a.js"
   ]
 }
